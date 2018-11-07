@@ -1,6 +1,6 @@
 within Economics.SupplyAndDemand.Components;
 model ExponentialProducer "Exponential pricing curve"
-  extends Interfaces.Consumer;
+  extends Interfaces.Producer;
   parameter Types.Price min_price "Price at low demand";
   parameter Types.Price max_price "Price at peak demand";
   parameter Real decay "Exponential decay rate as a function of volume";
