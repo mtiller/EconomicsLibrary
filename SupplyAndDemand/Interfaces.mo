@@ -56,4 +56,24 @@ package Interfaces
     annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
           coordinateSystem(preserveAspectRatio=false)));
   end Curve;
+
+  partial model Consumer "A consumer of goods"
+    Types.SalesVolume volume;
+    Types.Price price;
+    Interfaces.Market market
+      annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+  equation
+    price = market.price;
+    market.volume = volume;
+  end Consumer;
+
+  model Producer "A producer of goods"
+    Types.SalesVolume volume;
+    Types.Price price;
+    Interfaces.Market market(volume(start=-10))
+      annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
+  equation
+    price = market.price;
+    market.volume = -volume;
+  end Producer;
 end Interfaces;
