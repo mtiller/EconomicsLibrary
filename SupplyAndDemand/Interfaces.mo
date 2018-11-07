@@ -44,10 +44,18 @@ package Interfaces
     Types.Price price;
     Interfaces.Market market
       annotation (Placement(transformation(extent={{90,-10},{110,10}})));
+  protected
+    Real s "Volume or price gap";
+    Real price_gap = max(0,-s) "How much cost needs to come down for consumer to enter market";
   equation
-    price = market.price;
+    if (s<0) then
+      market.price = price+s;
+      volume = 0;
+    else
+      market.price = price;
+      volume = s;
+    end if;
     market.volume = volume;
-    assert(volume>0, "Consumers cannot purchase negative amounts");
   end Consumer;
 
   model Producer "A producer of goods"
@@ -56,10 +64,18 @@ package Interfaces
     Types.Price price;
     Interfaces.Market market(volume(start=-10))
       annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
+  protected
+    Real s;
+    Types.Price price_gap = max(0,s) "Amount prices need to rise for producer to enter the market";
   equation
-    price = market.price;
+    if (s<0) then
+      price = market.price;
+      volume = -s;
+    else
+      price = market.price+s;
+      volume = 0;
+    end if;
     market.volume = -volume;
-    assert(market.volume<0, "Producers cannot produce negative amounts of goods");
   end Producer;
 
   partial model Curve "Any model that is described by a curve"
