@@ -47,6 +47,7 @@ package Interfaces
   equation
     price = market.price;
     market.volume = volume;
+    assert(volume>0, "Consumers cannot purchase negative amounts");
   end Consumer;
 
   model Producer "A producer of goods"
@@ -58,6 +59,7 @@ package Interfaces
   equation
     price = market.price;
     market.volume = -volume;
+    assert(market.volume<0, "Producers cannot produce negative amounts of goods");
   end Producer;
 
   partial model Curve "Any model that is described by a curve"
