@@ -7,11 +7,11 @@ model PriceDiscovery
    parameter Boolean supplySide = true;
   Interfaces.Market market
     annotation (Placement(transformation(extent={{-10,90},{10,110}})));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
 protected
   Types.SalesVolume volume;
 equation
   volume = (to-from)*(time/over)+from;
   market.volume = if supplySide then -volume else volume;
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+        coordinateSystem(preserveAspectRatio=false)));
 end PriceDiscovery;

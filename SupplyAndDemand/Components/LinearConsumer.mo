@@ -5,4 +5,5 @@ model LinearConsumer "Linear distribution of consumers"
   parameter Types.PriceSensitivity alpha "Rate of price drop as volume increases";
 equation
   price = max_price - alpha*volume;
+  annotation (Icon(graphics={Line(points={{-80,60},{80,-20}}, color={0,255,0})}));
 end LinearConsumer;

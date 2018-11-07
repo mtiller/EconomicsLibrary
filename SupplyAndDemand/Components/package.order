@@ -1,7 +1,8 @@
-Consumer
-Producer
+LinearConsumer
+LinearProducer
+ExponentialConsumer
+ExponentialProducer
+UniformlyElasticConsumer
 MarketAnalysis
 Manufacturer
 PriceDiscovery
-LinearConsumer
-LinearProducer

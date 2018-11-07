@@ -1,6 +1,5 @@
 within Economics.SupplyAndDemand;
 package Interfaces
-
   connector Market "Model for a market place"
     Types.Price price(min=0, start=10);
     flow Types.SalesVolume volume;
@@ -39,25 +38,8 @@ package Interfaces
           coordinateSystem(preserveAspectRatio=false)));
   end Market;
 
-  partial model Participant "A participant in the market"
-
-    Market market annotation (Placement(transformation(extent={{-10,-10},{10,
-              10}}), iconTransformation(extent={{-10,-10},{10,10}})));
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-          coordinateSystem(preserveAspectRatio=false)));
-  end Participant;
-
-  partial block Curve
-    "A model of a curve relating price and sales volume"
-    // The presence of "input" and "output" here are simply to convey how
-    // many equation we expect to find.  It doesn't imply order of evaluation.
-    input Types.Price price;
-    output Types.SalesVolume volume;
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-          coordinateSystem(preserveAspectRatio=false)));
-  end Curve;
-
   partial model Consumer "A consumer of goods"
+    extends Curve;
     Types.SalesVolume volume;
     Types.Price price;
     Interfaces.Market market
@@ -68,6 +50,7 @@ package Interfaces
   end Consumer;
 
   model Producer "A producer of goods"
+    extends Curve;
     Types.SalesVolume volume;
     Types.Price price;
     Interfaces.Market market(volume(start=-10))
@@ -76,4 +59,38 @@ package Interfaces
     price = market.price;
     market.volume = -volume;
   end Producer;
+
+  partial model Curve "Any model that is described by a curve"
+    annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+          Rectangle(
+            extent={{-100,100},{100,-100}},
+            lineColor={0,0,0},
+            fillColor={255,255,255},
+            fillPattern=FillPattern.Solid),
+          Line(points={{-90,60},{-80,80}}, color={0,0,0}),
+          Line(points={{-80,-80},{-80,80}}, color={0,0,0}),
+          Line(points={{-80,80},{-70,60}}, color={0,0,0}),
+          Line(points={{-80,-80},{80,-80},{60,-90}}, color={0,0,0}),
+          Line(points={{80,-80},{60,-70}}, color={0,0,0}),
+          Line(points={{-84,96},{-84,82}},  color={0,0,0}),
+          Line(points={{-84,96},{-78,96},{-76,94},{-76,90},{-78,88},{-84,88}},
+              color={0,0,0}),
+          Line(points={{84,-78},{86,-76},{92,-76},{94,-78},{94,-88},{92,-90},{
+                86,-90},{84,-88},{84,-78}}, color={0,0,0}),
+          Line(points={{90,-86},{96,-92}}, color={0,0,0}),
+          Line(points={{-60,80},{-60,-80}}, color={215,215,215}),
+          Line(points={{-40,80},{-40,-80}}, color={215,215,215}),
+          Line(points={{-20,80},{-20,-80}}, color={215,215,215}),
+          Line(points={{0,80},{0,-80}}, color={215,215,215}),
+          Line(points={{20,80},{20,-80}}, color={215,215,215}),
+          Line(points={{40,80},{40,-80}}, color={215,215,215}),
+          Line(points={{-80,40},{80,40}}, color={215,215,215}),
+          Line(points={{-80,20},{80,20}}, color={215,215,215}),
+          Line(points={{-80,0},{80,0}}, color={215,215,215}),
+          Line(points={{-80,-20},{80,-20}}, color={215,215,215}),
+          Line(points={{-80,-40},{80,-40}}, color={215,215,215}),
+          Line(points={{-80,-60},{80,-60}}, color={215,215,215})}),
+                                                             Diagram(
+          coordinateSystem(preserveAspectRatio=false)));
+  end Curve;
 end Interfaces;
