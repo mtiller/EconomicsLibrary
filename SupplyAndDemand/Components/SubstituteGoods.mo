@@ -1,5 +1,6 @@
 within Economics.SupplyAndDemand.Components;
 model SubstituteGoods "Consumers have a choice"
+  parameter Real p_A = 0.5 "Preference for producer A [0=1]" annotation(Evaluate=true);
 
   Interfaces.Market consumer
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
@@ -10,29 +11,13 @@ model SubstituteGoods "Consumers have a choice"
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 protected
-  Real p_A, p_B = 1-p_A;
+  parameter Real p_B = 1-p_A annotation(Evaluate=true);
+  Types.SalesVolume v_A(min=0, start=1), v_B(min=0, start=1);
 equation
-  // p_A = 1/(1-consumer.volume);
-  p_A = if (time<0.25) then 1 else 1-4*(time-0.25)/3;
-//   if (producer_A.price>producer_B.price) then
-//     if (consumer.price>producer_A.price) then
-//       p_A = 1;
-//     elseif (consumer.price<producer_B.price) then
-//       p_A = 0;
-//     else
-//       p_A = (consumer.price-producer_B.price)/(producer_A.price-producer_B.price);
-//     end if;
-//   else
-//     if (consumer.price>producer_B.price) then
-//       p_A = 0;
-//     elseif (consumer.price<producer_A.price) then
-//       p_A = 1;
-//     else
-//       p_A = 1-(consumer.price-producer_A.price)/(producer_B.price-producer_A.price);
-//     end if;
-//   end if;
+  producer_A.volume = v_A;
+  producer_B.volume = v_B;
+
   producer_A.volume + producer_B.volume + consumer.volume = 0 "Conservation of goods";
-  // producer_A.volume*p_A + producer_B.volume*p_B +consumer.volume = 0 "Ratio of goods";
+  consumer.price*(v_A+v_B) = producer_A.price*v_A + producer_B.price*v_B "Conservation of revenue";
   consumer.price = p_A*producer_A.price + p_B*producer_B.price;
-  consumer.price*consumer.volume + producer_A.price*producer_A.volume + producer_B.price*producer_B.volume = 0 "Conservation of revenue";
 end SubstituteGoods;

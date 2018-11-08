@@ -64,21 +64,18 @@ package Interfaces
     Types.Price price;
     Interfaces.Market market(volume(start=-10))
       annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
-  // protected
-  //   Real s(start=-1);
-  //   Types.Price price_gap = max(0,s) "Amount prices need to rise for producer to enter the market";
-  // equation
-  //   if (s<0) then
-  //     price = market.price;
-  //     volume = -s;
-  //   else
-  //     price = market.price+s;
-  //     volume = 0;
-  //   end if;
+  protected
+     Real s(start=-1);
+     Types.Price price_gap = max(0,s) "Amount prices need to rise for producer to enter the market";
   equation
-    price = market.price;
+     if (s<0) then
+       price = market.price;
+       volume = -s;
+     else
+       price = market.price+s;
+       volume = 0;
+     end if;
     market.volume = -volume;
-    assert(volume>-Modelica.Constants.eps, "Producer producing negative number of goods");
   end Producer;
 
   partial model Curve "Any model that is described by a curve"
