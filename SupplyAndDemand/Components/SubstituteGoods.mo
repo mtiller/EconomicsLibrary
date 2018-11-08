@@ -5,10 +5,27 @@ model SubstituteGoods "Consumers have a choice"
   Interfaces.Market consumer
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
   Interfaces.Market producer_A
-    annotation (Placement(transformation(extent={{90,30},{110,50}})));
+    annotation (Placement(transformation(extent={{90,50},{110,70}})));
   Interfaces.Market producer_B
-    annotation (Placement(transformation(extent={{90,-50},{110,-30}})));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+    annotation (Placement(transformation(extent={{90,-70},{110,-50}})));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+        Rectangle(
+          extent={{-100,100},{100,-100}},
+          lineColor={0,0,0},
+          fillColor={255,170,170},
+          fillPattern=FillPattern.Solid),
+        Text(
+          extent={{-40,80},{40,40}},
+          lineColor={0,0,0},
+          textString="$$$"),
+        Text(
+          extent={{-40,-40},{40,-80}},
+          lineColor={0,0,0},
+          textString="$$"),
+        Text(
+          extent={{-40,20},{40,-20}},
+          lineColor={0,0,0},
+          textString="?")}),                                     Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 protected
   parameter Real p_B = 1-p_A annotation(Evaluate=true);
