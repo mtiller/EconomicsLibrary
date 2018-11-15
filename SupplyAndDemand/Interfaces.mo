@@ -49,7 +49,9 @@ package Interfaces
     Real price_gap = max(0,-s) "How much cost needs to come down for consumer to enter market";
   equation
     if (s<0) then
-      market.price = price+s;
+      // market.price = price;
+      // volume = 1e-7*s;
+      price = market.price + s;
       volume = 0;
     else
       market.price = price;
@@ -72,7 +74,7 @@ package Interfaces
        price = market.price;
        volume = -s;
      else
-       price = market.price+s;
+       price = market.price-s;
        volume = 0;
      end if;
     market.volume = -volume;
