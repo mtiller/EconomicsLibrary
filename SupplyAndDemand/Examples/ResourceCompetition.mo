@@ -1,6 +1,7 @@
 within Economics.SupplyAndDemand.Examples;
 model ResourceCompetition
   "Model of manufacturing supply chain with resource competition"
+
   Components.Manufacturer manufacturer(markup=0)
     annotation (Placement(transformation(extent={{30,-10},{50,10}})));
   Components.MarketAnalysis market
@@ -9,13 +10,11 @@ model ResourceCompetition
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Components.ExponentialProducer producer_A(
     decay=0.06,
-    min_price=4,
-    max_price=6)
+    min_price=4)
     annotation (Placement(transformation(extent={{50,10},{70,30}})));
   Components.ExponentialProducer producer_B(
     decay=0.06,
-    min_price=6,
-    max_price=8)
+    min_price=6)
     annotation (Placement(transformation(extent={{50,-30},{70,-10}})));
   Components.ExponentialConsumer raw_consumer(decay=0.04, max_price=5)
     annotation (Placement(transformation(extent={{0,30},{20,50}})));

@@ -4,7 +4,7 @@ model InternationalTrade
   Components.Trade trade(tariff_AB=0.05)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Sine fluctuations(
-    amplitude=0.1,
+    amplitude=0.05,
     freqHz=1,
     startTime=0.5,
     offset=1.2) "Fluctuation of currency exchange rates"

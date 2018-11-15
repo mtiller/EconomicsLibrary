@@ -1,5 +1,6 @@
 within Economics.SupplyAndDemand.Examples;
 model SupplyChain "Model of manufacturing supply chain"
+
   Components.Manufacturer manufacturer(markup=0)
     annotation (Placement(transformation(extent={{30,-10},{50,10}})));
   Components.MarketAnalysis market
@@ -8,13 +9,11 @@ model SupplyChain "Model of manufacturing supply chain"
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Components.ExponentialProducer producer_A(
     decay=0.06,
-    min_price=4,
-    max_price=6)
+    min_price=4)
     annotation (Placement(transformation(extent={{50,10},{70,30}})));
   Components.ExponentialProducer producer_B(
     decay=0.06,
-    min_price=6,
-    max_price=8)
+    min_price=6)
     annotation (Placement(transformation(extent={{50,-30},{70,-10}})));
 equation
   connect(market.producers, manufacturer.production)

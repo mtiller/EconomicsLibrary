@@ -8,7 +8,6 @@ model ExponentialMarket
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Components.ExponentialProducer producer(
     min_price=10,
-    max_price=14,
     decay=0.06)
     annotation (Placement(transformation(extent={{30,-10},{50,10}})));
 equation
