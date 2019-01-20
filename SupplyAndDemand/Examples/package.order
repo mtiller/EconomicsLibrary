@@ -2,8 +2,10 @@ LinearMarket
 LinearMarketWithTaxes
 UniformlyElasticDemand
 ExponentialMarket
+ExponentialMarketWithTaxes
 SupplyChain
 ResourceCompetition
+ResourceCompetition2
 ProductSegmentation
 MarketSegmentation
 InternationalMarkets

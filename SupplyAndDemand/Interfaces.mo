@@ -39,7 +39,6 @@ package Interfaces
   end Market;
 
   partial model Consumer "A consumer of goods"
-    extends Curve;
     Types.SalesVolume volume;
     Types.Price price;
     Interfaces.Market market
@@ -61,7 +60,6 @@ package Interfaces
   end Consumer;
 
   model Producer "A producer of goods"
-    extends Curve;
     Types.SalesVolume volume;
     Types.Price price;
     Interfaces.Market market(volume(start=-10))
@@ -79,38 +77,4 @@ package Interfaces
      end if;
     market.volume = -volume;
   end Producer;
-
-  partial model Curve "Any model that is described by a curve"
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
-          Rectangle(
-            extent={{-100,100},{100,-100}},
-            lineColor={0,0,0},
-            fillColor={255,255,255},
-            fillPattern=FillPattern.Solid),
-          Line(points={{-90,60},{-80,80}}, color={0,0,0}),
-          Line(points={{-80,-80},{-80,80}}, color={0,0,0}),
-          Line(points={{-80,80},{-70,60}}, color={0,0,0}),
-          Line(points={{-80,-80},{80,-80},{60,-90}}, color={0,0,0}),
-          Line(points={{80,-80},{60,-70}}, color={0,0,0}),
-          Line(points={{-84,96},{-84,82}},  color={0,0,0}),
-          Line(points={{-84,96},{-78,96},{-76,94},{-76,90},{-78,88},{-84,88}},
-              color={0,0,0}),
-          Line(points={{84,-78},{86,-76},{92,-76},{94,-78},{94,-88},{92,-90},{
-                86,-90},{84,-88},{84,-78}}, color={0,0,0}),
-          Line(points={{90,-86},{96,-92}}, color={0,0,0}),
-          Line(points={{-60,80},{-60,-80}}, color={215,215,215}),
-          Line(points={{-40,80},{-40,-80}}, color={215,215,215}),
-          Line(points={{-20,80},{-20,-80}}, color={215,215,215}),
-          Line(points={{0,80},{0,-80}}, color={215,215,215}),
-          Line(points={{20,80},{20,-80}}, color={215,215,215}),
-          Line(points={{40,80},{40,-80}}, color={215,215,215}),
-          Line(points={{-80,40},{80,40}}, color={215,215,215}),
-          Line(points={{-80,20},{80,20}}, color={215,215,215}),
-          Line(points={{-80,0},{80,0}}, color={215,215,215}),
-          Line(points={{-80,-20},{80,-20}}, color={215,215,215}),
-          Line(points={{-80,-40},{80,-40}}, color={215,215,215}),
-          Line(points={{-80,-60},{80,-60}}, color={215,215,215})}),
-                                                             Diagram(
-          coordinateSystem(preserveAspectRatio=false)));
-  end Curve;
 end Interfaces;

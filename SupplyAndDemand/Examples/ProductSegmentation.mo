@@ -3,10 +3,10 @@ model ProductSegmentation "A market with different producer segments"
 
   Components.ExponentialProducer high_end_producer(
     min_price=100,
-    decay=0.01) annotation (Placement(transformation(extent={{30,10},{50,30}})));
+    growth=0.01) annotation (Placement(transformation(extent={{30,10},{50,30}})));
   Components.ExponentialProducer low_end_producer(
     min_price=50,
-    decay=0.02)
+    growth=0.02)
     annotation (Placement(transformation(extent={{30,-30},{50,-10}})));
   Components.ExponentialConsumer affluent_consumer(max_price=160, decay=0.01)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));

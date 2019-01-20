@@ -3,14 +3,14 @@ model InternationalMarkets "Include geogrphically distributed markets"
 
   Components.ExponentialProducer foreign_producer(
     min_price=40,
-    decay=0.01) annotation (Placement(transformation(extent={{30,50},{50,70}})));
+    growth=0.01) annotation (Placement(transformation(extent={{30,50},{50,70}})));
   Components.ExponentialConsumer foreign_consumer(max_price=55, decay=0.001)
     annotation (Placement(transformation(extent={{-50,50},{-30,70}})));
   Components.ExponentialConsumer domestic_consumer(max_price=80, decay=0.003)
     annotation (Placement(transformation(extent={{-50,-70},{-30,-50}})));
   Components.ExponentialProducer domestic_producer(
     min_price=50,
-    decay=0.02)
+    growth=0.02)
     annotation (Placement(transformation(extent={{30,-70},{50,-50}})));
 equation
   connect(foreign_consumer.market, foreign_producer.market)
